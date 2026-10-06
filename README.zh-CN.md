@@ -12,7 +12,7 @@ UIKit 页面框架：页面级 context、命名事件、接收全部生命周期
 ## 安装
 
 ```swift
-.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.2.0")
+.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.2.1")
 // target 依赖：.product(name: "KirbyiOS", package: "KirbyiOS")
 ```
 
@@ -123,7 +123,7 @@ Templates/new-page.sh DemoList --list --output <dir>   # KirbyCollectionViewCont
 ## 测试
 
 ```bash
-xcodebuild test -scheme KirbyiOS -destination 'platform=iOS Simulator,name=iPhone 17'
+KIRBYIOS_STRICT=1 xcodebuild test -scheme KirbyiOS -destination 'platform=iOS Simulator,name=iPhone 17'
 
 # Example App（同时用到 WildFunctionKit 和 WFRouter），带 UI 测试
 cd Example && xcodegen generate

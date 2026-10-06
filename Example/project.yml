@@ -11,10 +11,10 @@ packages:
     path: ..
   WildFunctionKit:
     url: https://github.com/WildFunction/WildFunctionKit.git
-    from: 0.2.0
+    from: 0.2.1
   WFRouter:
     url: https://github.com/WildFunction/WFRouter.git
-    from: 0.2.0
+    from: 0.2.1
 targets:
   Example:
     type: application

@@ -12,7 +12,7 @@ UIKit page framework: per-page context, named events, plugins that receive every
 ## Install
 
 ```swift
-.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.2.0")
+.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.2.1")
 // target dependency: .product(name: "KirbyiOS", package: "KirbyiOS")
 ```
 
@@ -123,7 +123,7 @@ Templates/new-page.sh DemoList --list --output <dir>   # KirbyCollectionViewCont
 ## Test
 
 ```bash
-xcodebuild test -scheme KirbyiOS -destination 'platform=iOS Simulator,name=iPhone 17'
+KIRBYIOS_STRICT=1 xcodebuild test -scheme KirbyiOS -destination 'platform=iOS Simulator,name=iPhone 17'
 
 # Example app (also exercises WildFunctionKit and WFRouter) with UI tests
 cd Example && xcodegen generate
