@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Kind</key>
+	<string>Xcode.IDEFoundation.TextSubstitutionFileTemplateKind</string>
+	<key>Identifier</key>
+	<string>com.wildfunction.file.page</string>
+	<key>Summary</key>
+	<string>A WildFunctionKit page</string>
+	<key>Description</key>
+	<string>ViewController + ViewModel + ContextKeys + Events, following the WildFunctionKit page architecture.</string>
+	<key>DefaultCompletionName</key>
+	<string>MyPage</string>
+	<key>SortOrder</key>
+	<string>1</string>
+	<key>SupportsSwiftPackage</key>
+	<true/>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
+	</array>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Identifier</key>
+			<string>productName</string>
+			<key>Name</key>
+			<string>Page name:</string>
+			<key>Description</key>
+			<string>Page name without suffix, e.g. DemoDetail generates DemoDetailViewController</string>
+			<key>Type</key>
+			<string>text</string>
+			<key>Required</key>
+			<true/>
+			<key>NotPersisted</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>List</string>
+			<key>Name</key>
+			<string>List page (KirbyCollectionViewController)</string>
+			<key>Description</key>
+			<string>Generate a list page with diffable data source and compositional layout</string>
+			<key>Type</key>
+			<string>checkbox</string>
+			<key>Default</key>
+			<string>false</string>
+			<key>NotPersisted</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>languageChoice</string>
+			<key>Name</key>
+			<string>Language:</string>
+			<key>Description</key>
+			<string>The implementation language</string>
+			<key>Type</key>
+			<string>popup</string>
+			<key>Required</key>
+			<true/>
+			<key>Default</key>
+			<string>Swift</string>
+			<key>Values</key>
+			<array>
+				<string>Swift</string>
+			</array>
+			<key>AllowedTypes</key>
+			<dict>
+				<key>Swift</key>
+				<array>
+					<string>public.swift-source</string>
+				</array>
+			</dict>
+			<key>MainTemplateFiles</key>
+			<dict>
+				<key>Swift</key>
+				<string>___FILEBASENAME___ViewController.swift</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

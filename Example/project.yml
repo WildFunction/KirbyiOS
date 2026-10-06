@@ -1,0 +1,79 @@
+# Generate the project with XcodeGen: cd Example && xcodegen generate
+name: Example
+options:
+  bundleIdPrefix: com.wildfunction
+  deploymentTarget:
+    iOS: "18.4"
+  createIntermediateGroups: true
+packages:
+  # The framework is a local path so changes show up immediately; the other two use released versions.
+  KirbyiOS:
+    path: ..
+  WildFunctionKit:
+    url: https://github.com/WildFunction/WildFunctionKit.git
+    from: 0.2.0
+  WFRouter:
+    url: https://github.com/WildFunction/WFRouter.git
+    from: 0.2.0
+targets:
+  Example:
+    type: application
+    platform: iOS
+    sources:
+      - Example
+    dependencies:
+      - package: KirbyiOS
+        product: KirbyiOS
+      - package: WildFunctionKit
+        product: WildFunctionKit
+      - package: WFRouter
+        product: WFRouter
+    info:
+      path: Example/Info.plist
+      properties:
+        CFBundleDisplayName: WFKit Demo
+        UILaunchScreen: {}
+        CFBundleURLTypes:
+          - CFBundleURLName: com.wildfunction.example
+            CFBundleURLSchemes:
+              - wildfunction-demo
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: false
+          UISceneConfigurations:
+            UIWindowSceneSessionRoleApplication:
+              - UISceneConfigurationName: Default
+                UISceneDelegateClassName: $(PRODUCT_MODULE_NAME).SceneDelegate
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wildfunction.example
+        SWIFT_VERSION: "6.0"
+        SWIFT_TREAT_WARNINGS_AS_ERRORS: YES
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGNING_ALLOWED: NO
+  ExampleUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - ExampleUITests
+    dependencies:
+      - target: Example
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wildfunction.example.uitests
+        SWIFT_VERSION: "6.0"
+        SWIFT_TREAT_WARNINGS_AS_ERRORS: YES
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGNING_ALLOWED: NO
+schemes:
+  Example:
+    build:
+      targets:
+        Example: all
+        ExampleUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - ExampleUITests
