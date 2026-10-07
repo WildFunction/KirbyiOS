@@ -12,7 +12,7 @@ UIKit page framework: per-page context, named events, plugins that receive every
 ## Install
 
 ```swift
-.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.2.1")
+.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.3.0")
 // target dependency: .product(name: "KirbyiOS", package: "KirbyiOS")
 ```
 
@@ -20,7 +20,7 @@ UIKit page framework: per-page context, named events, plugins that receive every
 
 | Type | Role |
 | --- | --- |
-| `KirbyViewController` / `KirbyCollectionViewController` | Page base classes |
+| `KirbyViewController` | Page base class |
 | `KirbyContext` | Typed per-page storage (`context[Key.self]`), owns the event center |
 | `KirbyEventCenter` | `context.event`: named events inside one page |
 | `KirbyPlugin` / `BaseKirbyPlugin` | Cross-cutting behavior; receives view and main-request callbacks |
@@ -117,7 +117,7 @@ More options:
 ```bash
 Templates/install.sh                                   # Xcode: File > New > File from Template… > WildFunction Page
 Templates/new-page.sh DemoDetail --output <dir>        # CLI: creates <dir>/DemoDetail/ with 4 files
-Templates/new-page.sh DemoList --list --output <dir>   # KirbyCollectionViewController variant
+Templates/new-page.sh DemoList --list --output <dir>   # list page: collection view with a diffable data source
 ```
 
 ## Test

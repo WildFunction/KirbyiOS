@@ -2,18 +2,19 @@ import KirbyiOS
 import UIKit
 import WildFunctionKit
 
-final class ___VARIABLE_productName:identifier___ViewController: KirbyCollectionViewController {
+final class ___VARIABLE_productName:identifier___ViewController: KirbyViewController {
     private enum Section: Hashable {
         case main
     }
 
     let viewModel: ___VARIABLE_productName:identifier___ViewModel
 
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: ___VARIABLE_productName:identifier___ViewController.makeLayout())
     private var dataSource: UICollectionViewDiffableDataSource<Section, ___VARIABLE_productName:identifier___Item>?
 
     init(viewModel: ___VARIABLE_productName:identifier___ViewModel) {
         self.viewModel = viewModel
-        super.init(collectionViewLayout: Self.makeLayout())
+        super.init()
     }
 
     private static func makeLayout() -> UICollectionViewLayout {
@@ -38,8 +39,18 @@ final class ___VARIABLE_productName:identifier___ViewController: KirbyCollection
     override func mainRequestDidFail(_ error: KirbyRequestError) {
     }
 
-    /// Register cells and configure the data source.
+    /// Add the collection view, register cells and configure the data source.
     override func setupUI() {
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        // Pin to the view, not the safe area, so large titles collapse while scrolling.
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+
         let registration = UICollectionView.CellRegistration<UICollectionViewListCell, ___VARIABLE_productName:identifier___Item> { cell, _, item in
             var content = cell.defaultContentConfiguration()
             content.text = item.title

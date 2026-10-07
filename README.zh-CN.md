@@ -12,7 +12,7 @@ UIKit 页面框架：页面级 context、命名事件、接收全部生命周期
 ## 安装
 
 ```swift
-.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.2.1")
+.package(url: "https://github.com/WildFunction/KirbyiOS.git", from: "0.3.0")
 // target 依赖：.product(name: "KirbyiOS", package: "KirbyiOS")
 ```
 
@@ -20,7 +20,7 @@ UIKit 页面框架：页面级 context、命名事件、接收全部生命周期
 
 | 类型 | 作用 |
 | --- | --- |
-| `KirbyViewController` / `KirbyCollectionViewController` | 页面基类 |
+| `KirbyViewController` | 页面基类 |
 | `KirbyContext` | 页面级强类型存储（`context[Key.self]`），持有事件中心 |
 | `KirbyEventCenter` | `context.event`：页面内的命名事件 |
 | `KirbyPlugin` / `BaseKirbyPlugin` | 横切逻辑；接收视图和主接口的回调 |
@@ -117,7 +117,7 @@ let child = DemoChildViewController(context: context)
 ```bash
 Templates/install.sh                                   # Xcode：File > New > File from Template… > WildFunction Page
 Templates/new-page.sh DemoDetail --output <dir>        # 命令行：生成 <dir>/DemoDetail/，含 4 个文件
-Templates/new-page.sh DemoList --list --output <dir>   # KirbyCollectionViewController 版本
+Templates/new-page.sh DemoList --list --output <dir>   # 列表页：collection view 加 diffable data source
 ```
 
 ## 测试

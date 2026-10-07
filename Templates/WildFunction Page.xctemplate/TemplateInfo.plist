@@ -40,7 +40,7 @@
 			<key>Identifier</key>
 			<string>List</string>
 			<key>Name</key>
-			<string>List page (KirbyCollectionViewController)</string>
+			<string>List page (collection view)</string>
 			<key>Description</key>
 			<string>Generate a list page with diffable data source and compositional layout</string>
 			<key>Type</key>

@@ -15,7 +15,7 @@ import WildFunctionKit
 @MainActor
 public protocol KirbyViewModel: AnyObject, Observable {}
 
-/// Common interface of ``KirbyViewController`` and ``KirbyCollectionViewController``.
+/// Interface of a Kirby page, implemented by ``KirbyViewController``.
 @MainActor
 public protocol KirbyHosting: UIViewController {
     /// The page's context.
@@ -24,7 +24,7 @@ public protocol KirbyHosting: UIViewController {
     var pluginHost: KirbyPluginHost { get }
 }
 
-/// Internals shared by the base view controllers.
+/// Internals of the base view controller.
 @MainActor
 enum KirbySupport {
     /// Traits observed by default: appearance, size classes and content size.

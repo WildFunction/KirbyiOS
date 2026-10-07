@@ -3,8 +3,8 @@ import KirbyiOS
 import WFRouter
 import WildFunctionKit
 
-/// List page: KirbyCollectionViewController with a diffable data source and compositional layout.
-final class DemoListViewController: KirbyCollectionViewController {
+/// List page: a collection view with a diffable data source and compositional layout.
+final class DemoListViewController: KirbyViewController, UICollectionViewDelegate {
     private enum Section: Hashable {
         case main
     }
@@ -13,11 +13,12 @@ final class DemoListViewController: KirbyCollectionViewController {
 
     let viewModel: DemoListViewModel
 
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: DemoListViewController.makeLayout())
     private var dataSource: UICollectionViewDiffableDataSource<Section, DemoListItem>?
 
     init(viewModel: DemoListViewModel) {
         self.viewModel = viewModel
-        super.init(collectionViewLayout: Self.makeLayout())
+        super.init()
     }
 
     private static func makeLayout() -> UICollectionViewLayout {
@@ -40,6 +41,17 @@ final class DemoListViewController: KirbyCollectionViewController {
     override func setupUI() {
         title = "List"
 
+        collectionView.delegate = self
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(collectionView)
+        // Pin to the view, not the safe area, so large titles collapse while scrolling.
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+
         let registration = UICollectionView.CellRegistration<UICollectionViewListCell, DemoListItem> { cell, _, item in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
@@ -59,7 +71,7 @@ final class DemoListViewController: KirbyCollectionViewController {
         dataSource?.apply(snapshot)
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         guard let item = dataSource?.itemIdentifier(for: indexPath) else { return }
         wf_open(DemoDetailRoute.detail(id: item.id))
